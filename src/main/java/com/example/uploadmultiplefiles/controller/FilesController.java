@@ -55,4 +55,11 @@ public class FilesController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
+    @GetMapping("/deleteAll")
+    public ResponseEntity<ResponseMessage> deleteAll(){
+        String message = "";
+        storageService.deleteAll();
+        message = "Successfully deleted all files.";
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new ResponseMessage(message));
+    }
 }
