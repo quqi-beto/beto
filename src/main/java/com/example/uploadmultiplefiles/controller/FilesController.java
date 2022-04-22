@@ -55,7 +55,7 @@ public class FilesController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
-    @GetMapping("/deleteAll")
+    @DeleteMapping("/deleteAll")
     public ResponseEntity<ResponseMessage> deleteAll(){
         String message = "";
         storageService.deleteAll();
