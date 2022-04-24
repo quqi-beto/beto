@@ -46,7 +46,7 @@ public class FilesStorageServiceImpl implements FilesStorageService {
             } else {
                 throw new RuntimeException("Could not read the file!");
             }
-        } catch (MalformedURLException e) {
+        } catch (IOException e) {
             throw new RuntimeException("Error: " + e.getMessage());
         }
     }
