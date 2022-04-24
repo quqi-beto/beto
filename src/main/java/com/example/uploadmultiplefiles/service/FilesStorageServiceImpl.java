@@ -27,6 +27,8 @@ public class FilesStorageServiceImpl implements FilesStorageService {
     @Override
     public void save(MultipartFile file) {
         try {
+            if(!Files.exists(root))
+                Files.createDirectory(root);
             Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
         } catch (Exception e) {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
@@ -35,6 +37,8 @@ public class FilesStorageServiceImpl implements FilesStorageService {
     @Override
     public Resource load(String filename) {
         try {
+            if(!Files.exists(root))
+                Files.createDirectory(root);
             Path file = root.resolve(filename);
             Resource resource = new UrlResource(file.toUri());
             if (resource.exists() || resource.isReadable()) {
@@ -42,7 +46,7 @@ public class FilesStorageServiceImpl implements FilesStorageService {
             } else {
                 throw new RuntimeException("Could not read the file!");
             }
-        } catch (MalformedURLException e) {
+        } catch (IOException e) {
             throw new RuntimeException("Error: " + e.getMessage());
         }
     }
