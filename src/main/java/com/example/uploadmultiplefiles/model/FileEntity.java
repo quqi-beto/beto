@@ -1,9 +1,5 @@
 package com.example.uploadmultiplefiles.model;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -16,8 +12,13 @@ public class FileEntity {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
+    @Column(name="user_id")
+    private String userId;
+
     private String name;
 
+
+    @Column(name="content_type")
     private String contentType;
 
     private Long size;
@@ -31,6 +32,14 @@ public class FileEntity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {

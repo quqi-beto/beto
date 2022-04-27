@@ -8,6 +8,7 @@ import com.example.uploadmultiplefiles.db.FileRepository;
 import com.example.uploadmultiplefiles.model.FileEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,12 +22,13 @@ public class FileService {
         this.fileRepository = fileRepository;
     }
 
-    public void save(MultipartFile file) throws IOException {
+    public void save(MultipartFile file, String userId) throws IOException {
         FileEntity fileEntity = new FileEntity();
         fileEntity.setName(StringUtils.cleanPath(file.getOriginalFilename()));
         fileEntity.setContentType(file.getContentType());
         fileEntity.setData(file.getBytes());
         fileEntity.setSize(file.getSize());
+        fileEntity.setUserId(userId);
 
         fileRepository.save(fileEntity);
     }
@@ -41,5 +43,11 @@ public class FileService {
 
     public void deleteAllFiles() {
         fileRepository.deleteAll();
+    }
+
+    @Transactional
+    public FileEntity getFileByUserId(String userId) {
+        List<FileEntity> list = fileRepository.findByUserId(userId);
+        return list.get(0);
     }
 }
