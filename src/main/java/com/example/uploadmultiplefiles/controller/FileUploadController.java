@@ -11,13 +11,11 @@ import com.example.uploadmultiplefiles.model.FileEntity;
 import com.example.uploadmultiplefiles.model.FileResponse;
 import com.example.uploadmultiplefiles.model.OrderSlip;
 import com.example.uploadmultiplefiles.service.FileService;
-import com.example.uploadmultiplefiles.service.FilesStorageService;
 import com.example.uploadmultiplefiles.service.FilesStorageServiceImpl;
 import com.example.uploadmultiplefiles.singleton.UserOrdersFile;
 import com.example.uploadmultiplefiles.util.AppUtil;
 import com.example.uploadmultiplefiles.util.FileGeneratorUtil;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,6 +27,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("file")
+@CrossOrigin("http://localhost:4200")
 public class FileUploadController {
     @Autowired
     private final FileService fileService;
