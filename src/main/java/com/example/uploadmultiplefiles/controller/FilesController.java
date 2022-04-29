@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@CrossOrigin(origins = {"https://spring-crud-master.herokuapp.com","localhost:4200"})
+@CrossOrigin(origins = {"https://spring-crud-master.herokuapp.com","http://localhost:4200"})
 public class FilesController {
 
     @Autowired
