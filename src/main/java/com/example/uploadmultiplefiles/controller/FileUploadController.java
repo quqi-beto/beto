@@ -14,6 +14,7 @@ import com.example.uploadmultiplefiles.service.FileService;
 import com.example.uploadmultiplefiles.service.FilesStorageServiceImpl;
 import com.example.uploadmultiplefiles.singleton.UserOrdersFile;
 import com.example.uploadmultiplefiles.util.AppUtil;
+import com.example.uploadmultiplefiles.util.CsvGenerator;
 import com.example.uploadmultiplefiles.util.FileGeneratorUtil;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,9 @@ public class FileUploadController {
                             .body(String.format("PDF and Excel file doesn't match."));
                 }
 
-                FileGeneratorUtil.combined(orderList,file.getOriginalFilename());
+                FileGeneratorUtil.combined(orderList, file.getOriginalFilename());
+
+                CsvGenerator.generate(orderList, file.getOriginalFilename());
 
                 filesStorageService.cleanUp();
             }else{
