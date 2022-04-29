@@ -27,7 +27,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("file")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("https://spring-crud-master.herokuapp.com")
 public class FileUploadController {
     @Autowired
     private final FileService fileService;
