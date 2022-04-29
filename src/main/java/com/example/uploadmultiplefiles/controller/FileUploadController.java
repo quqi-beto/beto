@@ -59,7 +59,7 @@ public class FileUploadController {
 
                 FileGeneratorUtil.combined(orderList,file.getOriginalFilename());
 
-                filesStorageService.deleteAll();
+                filesStorageService.cleanUp();
             }else{
                 return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
                         .body(String.format("Invalid file type: %s!", file.getOriginalFilename()));
